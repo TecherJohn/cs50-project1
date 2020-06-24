@@ -102,7 +102,10 @@ def book_search():
         return render_template('login.html', login_error="Please Login First.")
 
     search_json = db.scalar("""SELECT last_book_search_json FROM users WHERE id = :user_id""", {"user_id": session["user_id"]})
-    search_dict = json.loads(search_json)
+    if search_json == None:
+        search_dict = dict()
+    else:
+        search_dict = json.loads(search_json)
 
     if "book_title_selector" in search_dict:
         book_title_selector = search_dict['book_title_selector']
@@ -201,7 +204,7 @@ def book_search_results():
     if select_where_statement != "":
         select_where_statement = " WHERE " + select_where_statement
 
-    json_search_save = json.dumps(search_save, indent = 4)   
+    json_search_save = json.dumps(search_save, indent = 4)
     db.execute("""UPDATE users SET last_book_search_json = :search WHERE id = :user_id""", {"search": json_search_save, "user_id": session["user_id"]})
     db.commit()
 
