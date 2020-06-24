@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block page_header %}
+<nav>
+  <div type="button" class="btn btn-dark"><a href="/book_search">Book Search</a></div>
+  <div type="button" class="btn btn-dark"><a href="/user_information">User Info</a></div>
+  <div type="button" class="btn btn-dark"><a href="/my_book_reviews">My Book Reviews</a></div>
+  <div type="button" class="btn btn-dark"><a href="/logout">Logout</a></div>
+</nav>
+<div id="page_header">
+  <div id="page_title">Update User Information</div>
+  <div id="page_error">{{registration_error}}</div>
+</div>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <form action="{{ url_for('update_user_information') }}" method="post">
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="first_name">First Name:</label>
+        </div>
+        <div class="col-6">
+          <input type="text" id="first_name" name="first_name" value="{{first_name}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="last_name">Last Name:</label>
+        </div>
+        <div class="col-6">
+          <input type="text" id="last_name" name="last_name" value="{{last_name}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="email">EMail:</label>
+        </div>
+        <div class="col-6">
+          <input type="email" id="email" name="email" value="{{email}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right"></div>
+        <div class="col-6">
+          <input type="submit" value="Update">
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+

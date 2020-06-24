@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block page_header %}
+<nav>
+  <div type="button" class="btn btn-dark"><a href="/book_search">Book Search</a></div>
+  <div type="button" class="btn btn-dark"><a href="/user_information">User Info</a></div>
+  <div type="button" class="btn btn-dark"><a href="/my_book_reviews">My Book Reviews</a></div>
+  <div type="button" class="btn btn-dark"><a href="/logout">Logout</a></div>
+</nav>
+<div id="page_header">
+  <div id="page_title">Book Information and Reviews</div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+  <div class="row"><div class="col-6 text-right">Author:</div><div class="col-6">{{book_info[0]}}</div></div>
+  <div class="row"><div class="col-6 text-right">Title:</div><div class="col-6">{{book_info[1]}}</div></div>
+  <div class="row"><div class="col-6 text-right">ISBN:</div><div class="col-6">{{book_info[2]}}</div></div>
+  <div class="row"><div class="col-6 text-right">Publication Year:</div><div class="col-6">{{book_info[3]}}</div></div>
+  <div class="row"><div class="col-12 text-center" id="book_info_sub_header">Goodreads Information</div></div>
+  <div class="row"><div class="col-6 text-right">Reviews:</div><div class="col-6">{{goodreads['reviews_count']}}</div></div>
+  <div class="row"><div class="col-6 text-right">Ratings:</div><div class="col-6">{{goodreads['ratings_count']}}</div></div>
+  <div class="row"><div class="col-6 text-right">Average Rating:</div><div class="col-6">{{goodreads['average_rating']}}</div></div>
+  <div class="row"><div class="col-12 text-center" id="book_info_sub_header">My Review</div></div>
+    <form action="{{ url_for('update_review', book_id=book_id) }}" method="post">
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="stars">Stars:</label>
+        </div>
+        <div class="col-6">
+          <select name="stars" id="stars">
+            {% if stars == 0 %}<option value=0 selected disabled hidden>Choose here</option> {% endif %}
+            <option value=1 {% if stars == 1 %} selected {% endif %}>1</option>
+            <option value=2 {% if stars == 2 %} selected {% endif %}>2</option>
+            <option value=3 {% if stars == 3 %} selected {% endif %}>3</option>
+            <option value=4 {% if stars == 4 %} selected {% endif %}>4</option>
+            <option value=5 {% if stars == 5 %} selected {% endif %}>5</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="review">Review:</label>
+        </div>
+        <div class="col-6">
+          <textarea id="review" name="review" cols=30 rows=3>{{review}}</textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6">
+          <input type="submit" value="Save Review">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if more_reviews %}
+
+<table id="review_table" border="3" align="center" summary="This table is a list of reviews of the selected book." cellspacing="0">
+  <thead id="review_table_header">
+    <tr>
+      <th><b>Reviewer</b></th>
+      <th><b>Stars</b></th>
+      <th><b>Review</b></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for review in reviews %}
+    <tr>
+      <td class="review_name">{{review[0]}}</td>
+      <td class="review_stars">{{review[1]}}</td>
+      <td class="review_text">{{review[2]}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endif %}
+
+{% endblock %}

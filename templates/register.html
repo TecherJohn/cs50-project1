@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block page_header %}
+<div id="page_header">
+  <div id="page_title">Register New User</div>
+  <div id="page_error">{{registration_error}}</div>
+</div>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <form action="{{ url_for('register_new_user') }}" method="post">
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="first_name">First Name:</label>
+        </div>
+        <div class="col-6">
+          <input type="text" id="first_name" name="first_name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="last_name">Last Name:</label>
+        </div>
+        <div class="col-6">
+          <input type="text" id="last_name" name="last_name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="email">EMail:</label>
+        </div>
+        <div class="col-6">
+          <input type="email" id="email" name="email">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="username">Username:</label>
+        </div>
+        <div class="col-6">
+          <input type="text" id="username" name="username">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 text-right">
+          <label for="pass">Password (8 characters minimum):</label>
+        </div>
+        <div class="col-6">
+          <input type="password" id="pass" name="password" minlength="8" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6">
+          <input type="submit" value="Register">
+        </div>
+      </div>
+    </form>
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6">
+          <a href="{{ url_for('login') }}">Login registered user.</a>
+        </div>
+      </div>
+    </div>
+{% endblock %}

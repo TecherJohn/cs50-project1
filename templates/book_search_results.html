@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block page_header %}
+<nav>
+  <div type="button" class="btn btn-dark"><a href="/book_search">Book Search</a></div>
+  <div type="button" class="btn btn-dark"><a href="/user_information">User Info</a></div>
+  <div type="button" class="btn btn-dark"><a href="/my_book_reviews">My Book Reviews</a></div>
+  <div type="button" class="btn btn-dark"><a href="/logout">Logout</a></div>
+</nav>
+<div id="page_header">
+  <div id="page_title">Book Search Results</div>
+</div>
+{% endblock %}
+
+{% block body %}
+<table id="book_table" border="3" align="center" summary="This table lists the books returned from the search." cellspacing="0">
+  <thead id="book_table_header">
+    <tr>
+      <th><b>Author(s)</b></th>
+      <th><b>Title</b></th>
+      <th><b>Year</b></th>
+      <th><b>ISBN</b></th>
+      <th><b>Reviews</b></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for book in books %}
+    <tr>
+      <td class="book_author">{{book[1]}}</td>
+      <td class="book_title">{{book[2]}}</td>
+      <td class="book_year">{{book[3]}}</td>
+      <td class="book_isbn">{{book[4]}}</td>
+      <td class="book_reviews">{{book[5]}}</td>
+      <td class="book_review"><a href="{{ url_for('book_information', book_id=book[0]) }}">Review</a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

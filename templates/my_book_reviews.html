@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block page_header %}
+<nav>
+  <div type="button" class="btn btn-dark"><a href="/book_search">Book Search</a></div>
+  <div type="button" class="btn btn-dark"><a href="/user_information">User Info</a></div>
+  <div type="button" class="btn btn-dark"><a href="/my_book_reviews">My Book Reviews</a></div>
+  <div type="button" class="btn btn-dark"><a href="/logout">Logout</a></div>
+</nav>
+<div id="page_header">
+  <div id="page_title">My Book Reviews</div>
+  {% if no_reviews %}  <div id="page_error">You have not reviewed any books!</div>{% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+{% if not no_reviews %}
+<table id="book_table" border="3" align="center" summary="This table lists the books returned from the search." cellspacing="0">
+  <thead id="book_table_header">
+    <tr>
+      <th><b>Title</b></th>
+      <th><b>Author(s)</b></th>
+      <th><b>Stars</b></th>
+      <th><b>Review</b></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for review in reviews %}
+    <tr>
+      <td class="book_title">{{review[1]}}</td>
+      <td class="book_author">{{review[2]}}</td>
+      <td class="review_stars">{{review[3]}}</td>
+      <td class="review_text">{{review[4]}}</td>
+      <td class="book_review"><a href="{{ url_for('book_information', book_id=review[0]) }}">Edit</a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

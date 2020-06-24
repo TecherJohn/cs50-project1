@@ -1,0 +1,117 @@
+header, footer {
+  background-color: sandybrown;
+}
+
+@media (min-width: 600px) {
+  header::after {
+    content: "Book Reviews (with data about Goodreads reviews!)";
+  }
+}
+@media (max-width: 599px) {
+  header::after {
+    content: "Book Reviews";
+  }
+}
+header {
+  height: 200;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  padding: 0px;
+}
+
+#page_header {
+  width: 100%;
+  background-color: tan;
+  text-align: center;
+  font-weight: bold;
+}
+
+#page_title {
+  font-size: 30px;
+}
+
+#page_error {
+  color: red;
+  font-size: 20px;
+}
+
+nav {
+  width: 100%;
+  padding: 10px;
+  background-color: tan;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+nav div {
+  margin: 2px;
+}
+nav div a {
+  color: inherit;
+  text-decoration: none;
+}
+
+section {
+  background-color: oldlace;
+  padding: 10px;
+}
+
+#book_table_header, #review_table_header {
+  background-color: #aab4be;
+  font-size: 16px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+#book_table > tbody > tr:hover {
+  background-color: #acebeb;
+}
+
+.book_reviews, .book_isbn, .book_year, .book_title, .book_author {
+  font-size: 14px;
+  padding-left: 5px;
+}
+
+.book_title {
+  font-family: "Times New Roman", Times, serif;
+  text-decoration: underline;
+}
+
+.book_year {
+  width: 45px;
+}
+
+.book_isbn {
+  width: 90px;
+}
+
+.book_reviews {
+  width: 70px;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.review_text, .review_stars, .review_name {
+  font-size: 14px;
+  padding-left: 5px;
+}
+
+#book_info_sub_header {
+  font-weight: bold;
+}
+
+#review_table {
+  margin-top: 20px;
+}
+
+.review_name {
+  width: 150px;
+}
+
+.review_stars {
+  width: 75px;
+}
+
+/*# sourceMappingURL=book-review-website.css.map */

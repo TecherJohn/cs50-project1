@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block page_header %}
+<div id="page_header">
+        <div id="page_title">Login</div>
+        <div id="page_error">{{login_error}}</div>
+</div>
+{% endblock %}
+{% block body %}
+        <div class="container">
+                <form action="{{ url_for('log_user_in') }}" method="post">
+                        <div class="row">
+                                <div class="col-6 text-right">
+                                        <label for="username">Username:</label>
+                                </div>
+                                <div class="col-6">
+                                        <input type="text" id="username" name="username">
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col-6 text-right">
+                                        <label for="pass">Password (8 characters minimum):</label>
+                                </div>
+                                <div class="col-6">
+                                        <input type="password" id="pass" name="password" minlength="8" required>
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col-6"></div>
+                                <div class="col-6">
+                                        <input type="submit" value="Login">
+                                </div>
+                        </div>
+                </form>
+                        <div class="row">
+                                <div class="col-6"></div>
+                                <div class="col-6">
+                                        <a href="{{ url_for('register') }}">Register a new login.</a>
+                                </div>
+                        </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block page_header %}
+<nav>
+  <div type="button" class="btn btn-dark"><a href="/book_search">Book Search</a></div>
+  <div type="button" class="btn btn-dark"><a href="/user_information">User Info</a></div>
+  <div type="button" class="btn btn-dark"><a href="/my_book_reviews">My Book Reviews</a></div>
+  <div type="button" class="btn btn-dark"><a href="/logout">Logout</a></div>
+</nav>
+<div id="page_header">
+  <div id="page_title">Book Search</div>
+  <div id="page_error">{{book_search_error}}</div>
+</div>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <form action="{{ url_for('book_search') }}" method="post">
+      <div class="row">
+        <div class="col-5 text-right">
+          <label for="book_title">Title:</label>
+        </div>
+        <div class="col-2">
+          <select name="book_title_selector" id="book_title_selector">
+            <option value="exactly" {% if book_title_selector == "exactly" %} selected {% endif %}>Exactly</option>
+            <option value="starts_with" {% if book_title_selector == "starts_with" %} selected {% endif %}>Starts With</option>
+            <option value="contains" {% if book_title_selector == "contains" %} selected {% endif %}>Contains</option>
+            <option value="ends_with" {% if book_title_selector == "ends_with" %} selected {% endif %}>Ends With</option>
+          </select>
+        </div>
+        <div class="col-5">
+          <input type="text" id="book_title" name="book_title" value="{{book_title}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5 text-right">
+          <label for="book_author">Author:</label>
+        </div>
+        <div class="col-2">
+          <select name="book_author_selector" id="book_author_selector">
+            <option value="exactly" {% if book_author_selector == "exactly" %} selected {% endif %}>Exactly</option>
+            <option value="starts_with" {% if book_author_selector == "starts_with" %} selected {% endif %}>Starts With</option>
+            <option value="contains" {% if book_author_selector == "contains" %} selected {% endif %}>Contains</option>
+            <option value="ends_with" {% if book_author_selector == "ends_with" %} selected {% endif %}>Ends With</option>
+          </select>
+        </div>
+        <div class="col-5">
+          <input type="text" id="book_author" name="book_author" value="{{book_author}}"">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5 text-right">
+          <label for="year_published">Year:</label>
+        </div>
+        <div class="col-2">{{year_published}}</div>
+        <div class="col-5">
+          <input type="text" id="year_published" name="year_published" maxlength="13" value="{{year_published}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5 text-right">
+          <label for="isbn">ISBN:</label>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5">
+          <input type="text" id="isbn" name="isbn" maxlength="13" value="{{isbn}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7"></div>
+        <div class="col-5">
+          <input type="submit" value="Search">
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
